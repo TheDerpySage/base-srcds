@@ -20,6 +20,7 @@ bash ./srcds_run -game "${STEAMAPP}" -console \
                         +maxplayers "${SRCDS_MAXPLAYERS}" \
                         +map "${SRCDS_STARTMAP}" \
                         +sv_setsteamaccount "${SRCDS_TOKEN}" \
+			+hostname "${SRCDS_HOSTNAME}" \
                         +rcon_password "${SRCDS_RCONPW}" \
                         +sv_password "${SRCDS_PW}" \
                         +sv_region "${SRCDS_REGION}" \
