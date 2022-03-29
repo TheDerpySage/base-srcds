@@ -16,6 +16,8 @@ A fork of leighmacdonald/base-srcds:latest with very very minor edits. Particula
         SRCDS_HOSTNAME: '"Test Server, Please Ignore"'  
         SRCDS_STARTMAP: "pl_badwater"  
         SRCDS_MAXPLAYERS: 24  
+        SRCDS_REIGON: 0
+        SRCDS_TAGS: '"thederpysage"'
         SRCDS_RCONPW: "CHANGEME"
         volumes:
         - logs:/home/steam/tf-dedicated/tf/logs
