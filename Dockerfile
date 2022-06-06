@@ -51,14 +51,14 @@ USER ${USER}
 WORKDIR ${HOMEDIR}
 
 RUN set -x \
-	&& wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.4.5/depotdownloader-2.4.5.zip \
-	&& unzip depotdownloader-2.4.5.zip \
+	&& wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.4.6/depotdownloader-2.4.6.zip \
+	&& unzip depotdownloader-2.4.6.zip \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	&& dotnet ./DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
 
 RUN set -x \
 	&& wget -qO- https://mms.alliedmods.net/mmsdrop/1.11/mmsource-1.11.0-git1145-linux.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
-	&& wget -qO- https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6529-linux.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+	&& wget -qO- https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6540-linux.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
 
 ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=66 \
