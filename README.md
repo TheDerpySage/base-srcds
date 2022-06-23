@@ -2,7 +2,8 @@
 
 A fork of leighmacdonald/base-srcds:latest with very very minor edits. Particularly, the hostname in the entry script and using latest stable builds of sourcemod and metamod. 
 
-### Sample docker-compose.yaml
+## Sample docker-compose.yaml
+
     version: "3.4"  
     services:  
       voov:  

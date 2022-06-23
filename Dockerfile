@@ -50,11 +50,18 @@ RUN chmod +x "${HOMEDIR}/entry.sh" \
 USER ${USER}
 WORKDIR ${HOMEDIR}
 
+#RUN set -x \
+#	&& wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.4.5/depotdownloader-2.4.5.zip \
+#	&& unzip depotdownloader-2.4.5.zip \
+#	&& mkdir -p "${STEAMAPPDIR}" \
+#	&& dotnet ./DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
+
+# Temporary workaround to DepotDownloader erroring out on cdn errors
 RUN set -x \
-	&& wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.4.5/depotdownloader-2.4.5.zip \
-	&& unzip depotdownloader-2.4.5.zip \
-	&& mkdir -p "${STEAMAPPDIR}" \
-	&& dotnet ./DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
+        && wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz \
+        && tar zxvf steamcmd_linux.tar.gz \
+        && mkdir -p "${STEAMAPPDIR}" \
+		&& ./steamcmd.sh +force_install_dir "${STEAMAPPDIR}" +login anonymous +app_update "${STEAMAPPID}" +exit
 
 RUN set -x \
 	&& wget -qO- https://mms.alliedmods.net/mmsdrop/1.11/mmsource-1.11.0-git1145-linux.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
