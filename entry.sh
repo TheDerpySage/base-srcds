@@ -1,14 +1,6 @@
 #!/bin/bash
-#if [ ! -z "$METAMOD_VERSION" ]; then
-#        LATESTMM=$(wget -qO- https://mms.alliedmods.net/mmsdrop/"${METAMOD_VERSION}"/mmsource-latest-linux)
-#        wget -qO- https://mms.alliedmods.net/mmsdrop/"${METAMOD_VERSION}"/"${LATESTMM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
-#fi
-#if [ ! -z "$SOURCEMOD_VERSION" ]; then
-#        LATESTSM=$(wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/sourcemod-latest-linux)
-#        wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/"${LATESTSM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
-#fi
 
-# wget -qO- "${DLURL}/master/cfg.tar.gz" | tar xvzf - -C "${STEAMAPPDIR}"
+dotnet ./DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
 
 bash ./srcds_run -game "${STEAMAPP}" -console \
                         -usercon \
@@ -26,3 +18,5 @@ bash ./srcds_run -game "${STEAMAPP}" -console \
                         +sv_region "${SRCDS_REGION}" \
                         +sv_tags "${SRCDS_TAGS}" \
                         -ip "${SRCDS_IP}"
+
+

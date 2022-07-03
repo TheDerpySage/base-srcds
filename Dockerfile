@@ -31,17 +31,17 @@ RUN set -x \
 	&& dpkg -i packages-microsoft-prod.deb \
 	&& rm packages-microsoft-prod.deb \
 	&& apt-get update \
-        && apt-get install -y --no-install-recommends --no-install-suggests \
-                aspnetcore-runtime-5.0 \
-                unzip \
-                ca-certificates \
-                lib32z1 \
-                libncurses5:i386 \
-                libbz2-1.0:i386 \
-                lib32gcc1 \
-                lib32stdc++6 \
-                libtinfo5:i386 \
-                libcurl3-gnutls:i386
+	&& apt-get install -y --no-install-recommends --no-install-suggests \
+		aspnetcore-runtime-6.0 \
+		unzip \
+		ca-certificates \
+		lib32z1 \
+		libncurses5:i386 \
+		libbz2-1.0:i386 \
+		lib32gcc1 \
+		lib32stdc++6 \
+		libtinfo5:i386 \
+		libcurl3-gnutls:i386
 
 COPY entry.sh ${HOMEDIR}/entry.sh
 RUN chmod +x "${HOMEDIR}/entry.sh" \
@@ -50,18 +50,11 @@ RUN chmod +x "${HOMEDIR}/entry.sh" \
 USER ${USER}
 WORKDIR ${HOMEDIR}
 
-#RUN set -x \
-#	&& wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.4.5/depotdownloader-2.4.5.zip \
-#	&& unzip depotdownloader-2.4.5.zip \
-#	&& mkdir -p "${STEAMAPPDIR}" \
-#	&& dotnet ./DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
-
-# Temporary workaround to DepotDownloader erroring out on cdn errors
 RUN set -x \
-        && wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz \
-        && tar zxvf steamcmd_linux.tar.gz \
-        && mkdir -p "${STEAMAPPDIR}" \
-		&& ./steamcmd.sh +force_install_dir "${STEAMAPPDIR}" +login anonymous +app_update "${STEAMAPPID}" +exit
+	&& wget https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_2.4.6/depotdownloader-2.4.6.zip \
+	&& unzip depotdownloader-2.4.6.zip \
+	&& mkdir -p "${STEAMAPPDIR}" \
+	&& dotnet ./DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
 
 RUN set -x \
 	&& wget -qO- https://mms.alliedmods.net/mmsdrop/1.11/mmsource-1.11.0-git1145-linux.tar.gz | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}" \
@@ -71,15 +64,15 @@ ENV SRCDS_FPSMAX=300 \
 	SRCDS_TICKRATE=66 \
 	SRCDS_PORT=27015 \
 	SRCDS_TV_PORT=27020 \
-        SRCDS_NET_PUBLIC_ADDRESS="" \
-        SRCDS_IP="" \
+    SRCDS_NET_PUBLIC_ADDRESS="" \
+    SRCDS_IP="" \
 	SRCDS_MAXPLAYERS=32 \
 	SRCDS_TOKEN="" \
 	SRCDS_RCONPW="changeme" \
 	SRCDS_PW="" \
 	SRCDS_STARTMAP="ctf_2fort" \
 	SRCDS_REGION=3 \
-        SRCDS_HOSTNAME="TF2"
+    SRCDS_HOSTNAME="TF2"
 
 RUN mkdir ${STEAMAPPDIR}/tf/logs
 

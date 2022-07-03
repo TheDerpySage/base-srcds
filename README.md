@@ -1,13 +1,17 @@
 # tds/base-srcds
 
-A fork of leighmacdonald/base-srcds:latest with very very minor edits. Particularly, the hostname in the entry script and using latest stable builds of sourcemod and metamod. 
+A fork of leighmacdonald/base-srcds:latest with very very minor edits.
+
+- Use of the Hostname env var
+- Persistent and readable volumes for logs, sm_data, and sm_game
+- Embedding the update command before starting the server, streamlining updates.
 
 ## Sample docker-compose.yaml
 
     version: "3.4"  
     services:  
-      voov:  
-        image: "base-srcds:dev"  
+      server:  
+        image: "tds/base-srcds:latest"  
         restart: "unless-stopped"  
         ports:  
         - "27015:27015"  
