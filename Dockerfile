@@ -12,6 +12,9 @@ ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
 ENV METAMOD_VERSION 1.11
 ENV SOURCEMOD_VERSION 1.10
 
+ENV TZ=America/Chicago
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN set -x \
 	&& dpkg --add-architecture i386 \
 	&& apt-get update \
