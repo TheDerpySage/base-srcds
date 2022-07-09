@@ -23,6 +23,7 @@ A fork of leighmacdonald/base-srcds:latest with very very minor edits.
         SRCDS_MAXPLAYERS: 24  
         SRCDS_REIGON: 0
         SRCDS_TAGS: '"thederpysage"'
+        SRCDS_PW: ''
         SRCDS_RCONPW: "CHANGEME"
         volumes:
         - logs:/home/steam/tf-dedicated/tf/logs
