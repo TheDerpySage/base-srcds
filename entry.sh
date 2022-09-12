@@ -17,6 +17,7 @@ bash ./srcds_run -game "${STEAMAPP}" -console \
                         +sv_password "${SRCDS_PW}" \
                         +sv_region "${SRCDS_REGION}" \
                         +sv_tags "${SRCDS_TAGS}" \
-                        -ip "${SRCDS_IP}"
+                        -ip "${SRCDS_IP}" \
+                        "${SRCDS_EXTRA_OPTIONS}"
 
 

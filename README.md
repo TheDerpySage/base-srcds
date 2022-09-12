@@ -32,4 +32,3 @@ A fork of leighmacdonald/base-srcds:latest with very very minor edits.
     volumes:
       logs:
       sm_data:
-      sm_game:

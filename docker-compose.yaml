@@ -21,3 +21,4 @@ services:
     - sm_game:/home/steam/tf-dedicated/tf/addons/sourcemod/gamedata
 volumes:
   logs:
+  sm_data:
