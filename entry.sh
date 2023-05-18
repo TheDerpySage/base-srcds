@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dotnet ../DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
+# dotnet ../DepotDownloader.dll -app "${STEAMAPPID}" -dir "${STEAMAPPDIR}" -max-downloads 16 -max-servers 32
 
 bash ./srcds_run -game "${STEAMAPP}" -console \
                         -usercon \

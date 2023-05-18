@@ -1,17 +1,16 @@
-# tds/base-srcds
+# tds/tf2-srcds
 
 A fork of leighmacdonald/base-srcds:latest with very very minor edits.
 
-- Use of the Hostname env var
-- Persistent and readable volumes for logs, sm_data, and sm_game
-- Embedding the update command before starting the server, streamlining updates.
+- Additional env vars for more launch options
+- Persistent and read/writable volumes for configs, logs, maps (for adding additional maps), and sourcemod itself (for adding mods on your own)
 
 ## Sample docker-compose.yaml
 
     version: "3.4"  
     services:  
       server:  
-        image: "tds/base-srcds:latest"  
+        image: "tds/tf2-srcds:latest"  
         restart: "unless-stopped"  
         ports:  
         - "27015:27015"  
@@ -23,12 +22,15 @@ A fork of leighmacdonald/base-srcds:latest with very very minor edits.
         SRCDS_MAXPLAYERS: 24  
         SRCDS_REIGON: 0
         SRCDS_TAGS: '"thederpysage"'
-        SRCDS_PW: ''
+        SRCDS_PW: "CHANGEME"
         SRCDS_RCONPW: "CHANGEME"
         volumes:
-        - logs:/home/steam/tf-dedicated/tf/logs
-        - sm_data:/home/steam/tf-dedicated/tf/addons/sourcemod/data
-        - sm_game:/home/steam/tf-dedicated/tf/addons/sourcemod/gamedata
+        - tf_cfg:/home/steam/tf-dedicated/tf/cfg
+        - tf_logs:/home/steam/tf-dedicated/tf/logs
+        - tf_maps:/home/steam/tf-dedicated/tf/maps
+        - tf_sourcemod:/home/steam/tf-dedicated/tf/addons/sourcemod
     volumes:
-      logs:
-      sm_data:
+      tf_cfg:
+      tf_logs:
+      tf_maps:
+      tf_sourcemod:
