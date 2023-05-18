@@ -25,12 +25,12 @@ A fork of leighmacdonald/base-srcds:latest with very very minor edits.
         SRCDS_PW: "CHANGEME"
         SRCDS_RCONPW: "CHANGEME"
         volumes:
-        - tf_cfg:/home/steam/tf-dedicated/tf/cfg
-        - tf_logs:/home/steam/tf-dedicated/tf/logs
-        - tf_maps:/home/steam/tf-dedicated/tf/maps
-        - tf_sourcemod:/home/steam/tf-dedicated/tf/addons/sourcemod
+        - cfg:/home/steam/tf-dedicated/tf/cfg
+        - logs:/home/steam/tf-dedicated/tf/logs
+        - maps:/home/steam/tf-dedicated/tf/maps
+        - sourcemod:/home/steam/tf-dedicated/tf/addons/sourcemod
     volumes:
-      tf_cfg:
-      tf_logs:
-      tf_maps:
-      tf_sourcemod:
+      cfg:
+      logs:
+      maps:
+      sourcemod:
